@@ -8,7 +8,7 @@ export function CaseCard({ item }: { item: CaseListItem }) {
   return (
     <article className="rounded-lg border border-border bg-card p-5 shadow-[var(--shadow-soft)] transition-colors hover:border-primary/40">
       <div className="flex flex-wrap items-center gap-2 text-xs">
-        <Badge variant="secondary">{CASE_TYPE_LABEL[item.case_type]}</Badge>
+        {item.case_type ? <Badge variant="secondary">{CASE_TYPE_LABEL[item.case_type]}</Badge> : null}
         <span className="text-muted-foreground">{localLabel(item.uf, item.city)}</span>
         {item.published_at ? (
           <span className="text-muted-foreground">· {formatarData(item.published_at)}</span>

@@ -58,7 +58,7 @@ function CasoPage() {
     <SiteLayout>
       <article>
         <div className="flex flex-wrap items-center gap-2 text-xs">
-          <Badge variant="secondary">{CASE_TYPE_LABEL[item.case_type]}</Badge>
+          {item.case_type ? <Badge variant="secondary">{CASE_TYPE_LABEL[item.case_type]}</Badge> : null}
           <span className="text-muted-foreground">{localLabel(item.uf, item.city)}</span>
           {item.published_at ? (
             <span className="text-muted-foreground">· {formatarData(item.published_at)}</span>
@@ -83,13 +83,15 @@ function CasoPage() {
         ) : null}
 
         <div className="mt-10 flex flex-wrap gap-3 text-sm">
-          <Link
-            to="/tipos/$tipo"
-            params={{ tipo: item.case_type }}
-            className="rounded-md border border-border px-3 py-2 hover:border-primary/50"
-          >
-            Mais casos de {CASE_TYPE_LABEL[item.case_type].toLowerCase()}
-          </Link>
+          {item.case_type ? (
+            <Link
+              to="/tipos/$tipo"
+              params={{ tipo: item.case_type }}
+              className="rounded-md border border-border px-3 py-2 hover:border-primary/50"
+            >
+              Mais casos de {CASE_TYPE_LABEL[item.case_type].toLowerCase()}
+            </Link>
+          ) : null}
           <Link
             to="/regioes/$uf"
             params={{ uf: item.uf }}
