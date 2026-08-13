@@ -14,16 +14,131 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      cases: {
+        Row: {
+          body: string
+          case_type: Database["public"]["Enums"]["case_type"]
+          city: string | null
+          created_at: string
+          featured: boolean
+          id: string
+          published_at: string | null
+          slug: string | null
+          source_url: string | null
+          status: Database["public"]["Enums"]["case_status"]
+          summary: string | null
+          title: string
+          uf: string
+          updated_at: string
+        }
+        Insert: {
+          body: string
+          case_type: Database["public"]["Enums"]["case_type"]
+          city?: string | null
+          created_at?: string
+          featured?: boolean
+          id?: string
+          published_at?: string | null
+          slug?: string | null
+          source_url?: string | null
+          status?: Database["public"]["Enums"]["case_status"]
+          summary?: string | null
+          title: string
+          uf: string
+          updated_at?: string
+        }
+        Update: {
+          body?: string
+          case_type?: Database["public"]["Enums"]["case_type"]
+          city?: string | null
+          created_at?: string
+          featured?: boolean
+          id?: string
+          published_at?: string | null
+          slug?: string | null
+          source_url?: string | null
+          status?: Database["public"]["Enums"]["case_status"]
+          summary?: string | null
+          title?: string
+          uf?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      reports: {
+        Row: {
+          case_type: Database["public"]["Enums"]["case_type"] | null
+          city: string | null
+          created_at: string
+          description: string
+          id: string
+          status: Database["public"]["Enums"]["case_status"]
+          uf: string
+        }
+        Insert: {
+          case_type?: Database["public"]["Enums"]["case_type"] | null
+          city?: string | null
+          created_at?: string
+          description: string
+          id?: string
+          status?: Database["public"]["Enums"]["case_status"]
+          uf: string
+        }
+        Update: {
+          case_type?: Database["public"]["Enums"]["case_type"] | null
+          city?: string | null
+          created_at?: string
+          description?: string
+          id?: string
+          status?: Database["public"]["Enums"]["case_status"]
+          uf?: string
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "moderator" | "user"
+      case_status: "pendente" | "publicado" | "recusado"
+      case_type:
+        | "caca"
+        | "criacao_abusiva"
+        | "comercializacao_ilegal"
+        | "distincao_racas"
+        | "agropecuaria_intensiva"
+        | "esporte"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +265,17 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "moderator", "user"],
+      case_status: ["pendente", "publicado", "recusado"],
+      case_type: [
+        "caca",
+        "criacao_abusiva",
+        "comercializacao_ilegal",
+        "distincao_racas",
+        "agropecuaria_intensiva",
+        "esporte",
+      ],
+    },
   },
 } as const
