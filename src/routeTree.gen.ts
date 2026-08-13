@@ -10,33 +10,187 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as DenunciaRouteImport } from './routes/denuncia'
+import { Route as DestaquesRouteImport } from './routes/destaques'
+import { Route as EnviarCasoRouteImport } from './routes/enviar-caso'
+import { Route as SobreRouteImport } from './routes/sobre'
+import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
+import { Route as CasosIndexRouteImport } from './routes/casos.index'
+import { Route as CasosSlugRouteImport } from './routes/casos.$slug'
+import { Route as RegioesIndexRouteImport } from './routes/regioes.index'
+import { Route as RegioesUfRouteImport } from './routes/regioes.$uf'
+import { Route as TiposTipoRouteImport } from './routes/tipos.$tipo'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DenunciaRoute = DenunciaRouteImport.update({
+  id: '/denuncia',
+  path: '/denuncia',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DestaquesRoute = DestaquesRouteImport.update({
+  id: '/destaques',
+  path: '/destaques',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnviarCasoRoute = EnviarCasoRouteImport.update({
+  id: '/enviar-caso',
+  path: '/enviar-caso',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SobreRoute = SobreRouteImport.update({
+  id: '/sobre',
+  path: '/sobre',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const CasosIndexRoute = CasosIndexRouteImport.update({
+  id: '/casos/',
+  path: '/casos/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CasosSlugRoute = CasosSlugRouteImport.update({
+  id: '/casos/$slug',
+  path: '/casos/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RegioesIndexRoute = RegioesIndexRouteImport.update({
+  id: '/regioes/',
+  path: '/regioes/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RegioesUfRoute = RegioesUfRouteImport.update({
+  id: '/regioes/$uf',
+  path: '/regioes/$uf',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TiposTipoRoute = TiposTipoRouteImport.update({
+  id: '/tipos/$tipo',
+  path: '/tipos/$tipo',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/denuncia': typeof DenunciaRoute
+  '/destaques': typeof DestaquesRoute
+  '/enviar-caso': typeof EnviarCasoRoute
+  '/sobre': typeof SobreRoute
+  '/admin': typeof AuthenticatedAdminRoute
+  '/casos/$slug': typeof CasosSlugRoute
+  '/regioes/$uf': typeof RegioesUfRoute
+  '/tipos/$tipo': typeof TiposTipoRoute
+  '/casos/': typeof CasosIndexRoute
+  '/regioes/': typeof RegioesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/denuncia': typeof DenunciaRoute
+  '/destaques': typeof DestaquesRoute
+  '/enviar-caso': typeof EnviarCasoRoute
+  '/sobre': typeof SobreRoute
+  '/admin': typeof AuthenticatedAdminRoute
+  '/casos/$slug': typeof CasosSlugRoute
+  '/regioes/$uf': typeof RegioesUfRoute
+  '/tipos/$tipo': typeof TiposTipoRoute
+  '/casos': typeof CasosIndexRoute
+  '/regioes': typeof RegioesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/auth': typeof AuthRoute
+  '/denuncia': typeof DenunciaRoute
+  '/destaques': typeof DestaquesRoute
+  '/enviar-caso': typeof EnviarCasoRoute
+  '/sobre': typeof SobreRoute
+  '/_authenticated/admin': typeof AuthenticatedAdminRoute
+  '/casos/$slug': typeof CasosSlugRoute
+  '/regioes/$uf': typeof RegioesUfRoute
+  '/tipos/$tipo': typeof TiposTipoRoute
+  '/casos/': typeof CasosIndexRoute
+  '/regioes/': typeof RegioesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/denuncia'
+    | '/destaques'
+    | '/enviar-caso'
+    | '/sobre'
+    | '/admin'
+    | '/casos/$slug'
+    | '/regioes/$uf'
+    | '/tipos/$tipo'
+    | '/casos/'
+    | '/regioes/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/auth'
+    | '/denuncia'
+    | '/destaques'
+    | '/enviar-caso'
+    | '/sobre'
+    | '/admin'
+    | '/casos/$slug'
+    | '/regioes/$uf'
+    | '/tipos/$tipo'
+    | '/casos'
+    | '/regioes'
+  id:
+    | '__root__'
+    | '/'
+    | '/_authenticated'
+    | '/auth'
+    | '/denuncia'
+    | '/destaques'
+    | '/enviar-caso'
+    | '/sobre'
+    | '/_authenticated/admin'
+    | '/casos/$slug'
+    | '/regioes/$uf'
+    | '/tipos/$tipo'
+    | '/casos/'
+    | '/regioes/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  AuthRoute: typeof AuthRoute
+  DenunciaRoute: typeof DenunciaRoute
+  DestaquesRoute: typeof DestaquesRoute
+  EnviarCasoRoute: typeof EnviarCasoRoute
+  SobreRoute: typeof SobreRoute
+  CasosSlugRoute: typeof CasosSlugRoute
+  RegioesUfRoute: typeof RegioesUfRoute
+  TiposTipoRoute: typeof TiposTipoRoute
+  CasosIndexRoute: typeof CasosIndexRoute
+  RegioesIndexRoute: typeof RegioesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +202,117 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/denuncia': {
+      id: '/denuncia'
+      path: '/denuncia'
+      fullPath: '/denuncia'
+      preLoaderRoute: typeof DenunciaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/destaques': {
+      id: '/destaques'
+      path: '/destaques'
+      fullPath: '/destaques'
+      preLoaderRoute: typeof DestaquesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/enviar-caso': {
+      id: '/enviar-caso'
+      path: '/enviar-caso'
+      fullPath: '/enviar-caso'
+      preLoaderRoute: typeof EnviarCasoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sobre': {
+      id: '/sobre'
+      path: '/sobre'
+      fullPath: '/sobre'
+      preLoaderRoute: typeof SobreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/admin': {
+      id: '/_authenticated/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AuthenticatedAdminRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/casos/': {
+      id: '/casos/'
+      path: '/casos'
+      fullPath: '/casos/'
+      preLoaderRoute: typeof CasosIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/casos/$slug': {
+      id: '/casos/$slug'
+      path: '/casos/$slug'
+      fullPath: '/casos/$slug'
+      preLoaderRoute: typeof CasosSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/regioes/': {
+      id: '/regioes/'
+      path: '/regioes'
+      fullPath: '/regioes/'
+      preLoaderRoute: typeof RegioesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/regioes/$uf': {
+      id: '/regioes/$uf'
+      path: '/regioes/$uf'
+      fullPath: '/regioes/$uf'
+      preLoaderRoute: typeof RegioesUfRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tipos/$tipo': {
+      id: '/tipos/$tipo'
+      path: '/tipos/$tipo'
+      fullPath: '/tipos/$tipo'
+      preLoaderRoute: typeof TiposTipoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAdminRoute: typeof AuthenticatedAdminRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAdminRoute: AuthenticatedAdminRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  AuthRoute: AuthRoute,
+  DenunciaRoute: DenunciaRoute,
+  DestaquesRoute: DestaquesRoute,
+  EnviarCasoRoute: EnviarCasoRoute,
+  SobreRoute: SobreRoute,
+  CasosSlugRoute: CasosSlugRoute,
+  RegioesUfRoute: RegioesUfRoute,
+  TiposTipoRoute: TiposTipoRoute,
+  CasosIndexRoute: CasosIndexRoute,
+  RegioesIndexRoute: RegioesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
