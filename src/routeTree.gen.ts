@@ -12,6 +12,8 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DenunciaRouteImport } from './routes/denuncia'
 import { Route as DestaquesRouteImport } from './routes/destaques'
+import { Route as EnviarCasoRouteImport } from './routes/enviar-caso'
+import { Route as SobreRouteImport } from './routes/sobre'
 import { Route as CasosIndexRouteImport } from './routes/casos.index'
 import { Route as CasosSlugRouteImport } from './routes/casos.$slug'
 import { Route as RegioesIndexRouteImport } from './routes/regioes.index'
@@ -31,6 +33,16 @@ const DenunciaRoute = DenunciaRouteImport.update({
 const DestaquesRoute = DestaquesRouteImport.update({
   id: '/destaques',
   path: '/destaques',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnviarCasoRoute = EnviarCasoRouteImport.update({
+  id: '/enviar-caso',
+  path: '/enviar-caso',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SobreRoute = SobreRouteImport.update({
+  id: '/sobre',
+  path: '/sobre',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CasosIndexRoute = CasosIndexRouteImport.update({
@@ -63,6 +75,8 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/denuncia': typeof DenunciaRoute
   '/destaques': typeof DestaquesRoute
+  '/enviar-caso': typeof EnviarCasoRoute
+  '/sobre': typeof SobreRoute
   '/casos/$slug': typeof CasosSlugRoute
   '/regioes/$uf': typeof RegioesUfRoute
   '/tipos/$tipo': typeof TiposTipoRoute
@@ -73,6 +87,8 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/denuncia': typeof DenunciaRoute
   '/destaques': typeof DestaquesRoute
+  '/enviar-caso': typeof EnviarCasoRoute
+  '/sobre': typeof SobreRoute
   '/casos/$slug': typeof CasosSlugRoute
   '/regioes/$uf': typeof RegioesUfRoute
   '/tipos/$tipo': typeof TiposTipoRoute
@@ -84,6 +100,8 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/denuncia': typeof DenunciaRoute
   '/destaques': typeof DestaquesRoute
+  '/enviar-caso': typeof EnviarCasoRoute
+  '/sobre': typeof SobreRoute
   '/casos/$slug': typeof CasosSlugRoute
   '/regioes/$uf': typeof RegioesUfRoute
   '/tipos/$tipo': typeof TiposTipoRoute
@@ -96,6 +114,8 @@ export interface FileRouteTypes {
     | '/'
     | '/denuncia'
     | '/destaques'
+    | '/enviar-caso'
+    | '/sobre'
     | '/casos/$slug'
     | '/regioes/$uf'
     | '/tipos/$tipo'
@@ -106,6 +126,8 @@ export interface FileRouteTypes {
     | '/'
     | '/denuncia'
     | '/destaques'
+    | '/enviar-caso'
+    | '/sobre'
     | '/casos/$slug'
     | '/regioes/$uf'
     | '/tipos/$tipo'
@@ -116,6 +138,8 @@ export interface FileRouteTypes {
     | '/'
     | '/denuncia'
     | '/destaques'
+    | '/enviar-caso'
+    | '/sobre'
     | '/casos/$slug'
     | '/regioes/$uf'
     | '/tipos/$tipo'
@@ -127,6 +151,8 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DenunciaRoute: typeof DenunciaRoute
   DestaquesRoute: typeof DestaquesRoute
+  EnviarCasoRoute: typeof EnviarCasoRoute
+  SobreRoute: typeof SobreRoute
   CasosSlugRoute: typeof CasosSlugRoute
   RegioesUfRoute: typeof RegioesUfRoute
   TiposTipoRoute: typeof TiposTipoRoute
@@ -155,6 +181,20 @@ declare module '@tanstack/react-router' {
       path: '/destaques'
       fullPath: '/destaques'
       preLoaderRoute: typeof DestaquesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/enviar-caso': {
+      id: '/enviar-caso'
+      path: '/enviar-caso'
+      fullPath: '/enviar-caso'
+      preLoaderRoute: typeof EnviarCasoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sobre': {
+      id: '/sobre'
+      path: '/sobre'
+      fullPath: '/sobre'
+      preLoaderRoute: typeof SobreRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/casos/': {
@@ -199,6 +239,8 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DenunciaRoute: DenunciaRoute,
   DestaquesRoute: DestaquesRoute,
+  EnviarCasoRoute: EnviarCasoRoute,
+  SobreRoute: SobreRoute,
   CasosSlugRoute: CasosSlugRoute,
   RegioesUfRoute: RegioesUfRoute,
   TiposTipoRoute: TiposTipoRoute,
