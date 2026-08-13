@@ -10,10 +10,13 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as AuthRouteImport } from './routes/auth'
 import { Route as DenunciaRouteImport } from './routes/denuncia'
 import { Route as DestaquesRouteImport } from './routes/destaques'
 import { Route as EnviarCasoRouteImport } from './routes/enviar-caso'
 import { Route as SobreRouteImport } from './routes/sobre'
+import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as CasosIndexRouteImport } from './routes/casos.index'
 import { Route as CasosSlugRouteImport } from './routes/casos.$slug'
 import { Route as RegioesIndexRouteImport } from './routes/regioes.index'
@@ -23,6 +26,15 @@ import { Route as TiposTipoRouteImport } from './routes/tipos.$tipo'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DenunciaRoute = DenunciaRouteImport.update({
@@ -44,6 +56,11 @@ const SobreRoute = SobreRouteImport.update({
   id: '/sobre',
   path: '/sobre',
   getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const CasosIndexRoute = CasosIndexRouteImport.update({
   id: '/casos/',
@@ -73,10 +90,12 @@ const TiposTipoRoute = TiposTipoRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
   '/denuncia': typeof DenunciaRoute
   '/destaques': typeof DestaquesRoute
   '/enviar-caso': typeof EnviarCasoRoute
   '/sobre': typeof SobreRoute
+  '/admin': typeof AuthenticatedAdminRoute
   '/casos/$slug': typeof CasosSlugRoute
   '/regioes/$uf': typeof RegioesUfRoute
   '/tipos/$tipo': typeof TiposTipoRoute
@@ -85,10 +104,12 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
   '/denuncia': typeof DenunciaRoute
   '/destaques': typeof DestaquesRoute
   '/enviar-caso': typeof EnviarCasoRoute
   '/sobre': typeof SobreRoute
+  '/admin': typeof AuthenticatedAdminRoute
   '/casos/$slug': typeof CasosSlugRoute
   '/regioes/$uf': typeof RegioesUfRoute
   '/tipos/$tipo': typeof TiposTipoRoute
@@ -98,10 +119,13 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/auth': typeof AuthRoute
   '/denuncia': typeof DenunciaRoute
   '/destaques': typeof DestaquesRoute
   '/enviar-caso': typeof EnviarCasoRoute
   '/sobre': typeof SobreRoute
+  '/_authenticated/admin': typeof AuthenticatedAdminRoute
   '/casos/$slug': typeof CasosSlugRoute
   '/regioes/$uf': typeof RegioesUfRoute
   '/tipos/$tipo': typeof TiposTipoRoute
@@ -112,10 +136,12 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/auth'
     | '/denuncia'
     | '/destaques'
     | '/enviar-caso'
     | '/sobre'
+    | '/admin'
     | '/casos/$slug'
     | '/regioes/$uf'
     | '/tipos/$tipo'
@@ -124,10 +150,12 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/auth'
     | '/denuncia'
     | '/destaques'
     | '/enviar-caso'
     | '/sobre'
+    | '/admin'
     | '/casos/$slug'
     | '/regioes/$uf'
     | '/tipos/$tipo'
@@ -136,10 +164,13 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/_authenticated'
+    | '/auth'
     | '/denuncia'
     | '/destaques'
     | '/enviar-caso'
     | '/sobre'
+    | '/_authenticated/admin'
     | '/casos/$slug'
     | '/regioes/$uf'
     | '/tipos/$tipo'
@@ -149,6 +180,8 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  AuthRoute: typeof AuthRoute
   DenunciaRoute: typeof DenunciaRoute
   DestaquesRoute: typeof DestaquesRoute
   EnviarCasoRoute: typeof EnviarCasoRoute
@@ -167,6 +200,20 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/denuncia': {
@@ -196,6 +243,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/sobre'
       preLoaderRoute: typeof SobreRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/admin': {
+      id: '/_authenticated/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AuthenticatedAdminRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/casos/': {
       id: '/casos/'
@@ -235,8 +289,21 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAdminRoute: typeof AuthenticatedAdminRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAdminRoute: AuthenticatedAdminRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  AuthRoute: AuthRoute,
   DenunciaRoute: DenunciaRoute,
   DestaquesRoute: DestaquesRoute,
   EnviarCasoRoute: EnviarCasoRoute,
