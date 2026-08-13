@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DenunciaRouteImport } from './routes/denuncia'
 import { Route as DestaquesRouteImport } from './routes/destaques'
 import { Route as CasosIndexRouteImport } from './routes/casos.index'
 import { Route as CasosSlugRouteImport } from './routes/casos.$slug'
@@ -20,6 +21,11 @@ import { Route as TiposTipoRouteImport } from './routes/tipos.$tipo'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DenunciaRoute = DenunciaRouteImport.update({
+  id: '/denuncia',
+  path: '/denuncia',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DestaquesRoute = DestaquesRouteImport.update({
@@ -55,6 +61,7 @@ const TiposTipoRoute = TiposTipoRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/denuncia': typeof DenunciaRoute
   '/destaques': typeof DestaquesRoute
   '/casos/$slug': typeof CasosSlugRoute
   '/regioes/$uf': typeof RegioesUfRoute
@@ -64,6 +71,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/denuncia': typeof DenunciaRoute
   '/destaques': typeof DestaquesRoute
   '/casos/$slug': typeof CasosSlugRoute
   '/regioes/$uf': typeof RegioesUfRoute
@@ -74,6 +82,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/denuncia': typeof DenunciaRoute
   '/destaques': typeof DestaquesRoute
   '/casos/$slug': typeof CasosSlugRoute
   '/regioes/$uf': typeof RegioesUfRoute
@@ -85,6 +94,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/denuncia'
     | '/destaques'
     | '/casos/$slug'
     | '/regioes/$uf'
@@ -94,6 +104,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/denuncia'
     | '/destaques'
     | '/casos/$slug'
     | '/regioes/$uf'
@@ -103,6 +114,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/denuncia'
     | '/destaques'
     | '/casos/$slug'
     | '/regioes/$uf'
@@ -113,6 +125,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DenunciaRoute: typeof DenunciaRoute
   DestaquesRoute: typeof DestaquesRoute
   CasosSlugRoute: typeof CasosSlugRoute
   RegioesUfRoute: typeof RegioesUfRoute
@@ -128,6 +141,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/denuncia': {
+      id: '/denuncia'
+      path: '/denuncia'
+      fullPath: '/denuncia'
+      preLoaderRoute: typeof DenunciaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/destaques': {
@@ -177,6 +197,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DenunciaRoute: DenunciaRoute,
   DestaquesRoute: DestaquesRoute,
   CasosSlugRoute: CasosSlugRoute,
   RegioesUfRoute: RegioesUfRoute,
