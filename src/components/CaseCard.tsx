@@ -2,11 +2,18 @@ import { Link } from "@tanstack/react-router";
 
 import { Badge } from "@/components/ui/badge";
 import { CASE_TYPE_LABEL, formatarData, localLabel } from "@/lib/casos";
+import { useImagemUrl } from "@/lib/imagens";
 import type { CaseListItem } from "@/lib/queries";
 
 export function CaseCard({ item }: { item: CaseListItem }) {
+  const imagem = useImagemUrl(item.image_path);
+
   return (
-    <article className="rounded-lg border border-border bg-card p-5 shadow-[var(--shadow-soft)] transition-colors hover:border-primary/40">
+    <article className="overflow-hidden rounded-lg border border-border bg-card shadow-[var(--shadow-soft)] transition-colors hover:border-primary/40">
+      {imagem ? (
+        <img src={imagem} alt={`Imagem do caso: ${item.title}`} loading="lazy" className="h-48 w-full object-cover" />
+      ) : null}
+      <div className="p-5">
       <div className="flex flex-wrap items-center gap-2 text-xs">
         {item.case_type ? <Badge variant="secondary">{CASE_TYPE_LABEL[item.case_type]}</Badge> : null}
         <span className="text-muted-foreground">{localLabel(item.uf, item.city)}</span>
@@ -27,6 +34,7 @@ export function CaseCard({ item }: { item: CaseListItem }) {
       >
         Ler o caso
       </Link>
+      </div>
     </article>
   );
 }

@@ -5,6 +5,7 @@ import { SiteLayout } from "@/components/SiteLayout";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import { CASE_TYPE_LABEL, LEIS, formatarData, localLabel } from "@/lib/casos";
+import { useImagemUrl } from "@/lib/imagens";
 import { caseBySlugQuery } from "@/lib/queries";
 
 export const Route = createFileRoute("/casos/$slug")({
@@ -29,6 +30,7 @@ export const Route = createFileRoute("/casos/$slug")({
 function CasoPage() {
   const { slug } = Route.useParams();
   const caso = useQuery(caseBySlugQuery(slug));
+  const imagem = useImagemUrl(caso.data?.image_path);
 
   if (caso.isLoading) {
     return (
@@ -66,6 +68,14 @@ function CasoPage() {
         </div>
         <h1 className="mt-3 font-display text-4xl font-semibold leading-tight">{item.title}</h1>
         {item.summary ? <p className="mt-4 text-lg text-muted-foreground">{item.summary}</p> : null}
+
+        {imagem ? (
+          <img
+            src={imagem}
+            alt={`Imagem do caso: ${item.title}`}
+            className="mt-6 w-full rounded-lg border border-border object-cover"
+          />
+        ) : null}
 
         <div className="mt-8 space-y-4 text-base leading-relaxed text-foreground">
           {item.body.split("\n").filter(Boolean).map((paragrafo, i) => (
