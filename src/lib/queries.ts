@@ -2,11 +2,21 @@ import { queryOptions } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import type { CaseRow, CaseType } from "@/lib/casos";
 
-const LIST_COLUMNS = "id, slug, title, summary, case_type, uf, city, featured, published_at";
+const LIST_COLUMNS =
+  "id, slug, title, summary, case_type, uf, city, featured, published_at, image_path";
 
 export type CaseListItem = Pick<
   CaseRow,
-  "id" | "slug" | "title" | "summary" | "case_type" | "uf" | "city" | "featured" | "published_at"
+  | "id"
+  | "slug"
+  | "title"
+  | "summary"
+  | "case_type"
+  | "uf"
+  | "city"
+  | "featured"
+  | "published_at"
+  | "image_path"
 >;
 
 async function listCases(filters: { type?: CaseType; uf?: string; featured?: boolean; limit?: number }) {
