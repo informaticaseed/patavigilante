@@ -44,6 +44,10 @@ export function SideNav({ onNavigate }: { onNavigate?: () => void }) {
           <FileWarning className="h-4 w-4 text-accent" aria-hidden />
           Todos os casos
         </Link>
+        <Link to="/sobre" onClick={onNavigate} className={itemClass} activeProps={{ className: activeClass }}>
+          <FileWarning className="h-4 w-4 text-accent" aria-hidden />
+          Sobre e legislação
+        </Link>
       </div>
 
       <div className="rounded-lg border border-border bg-card p-3 shadow-[var(--shadow-soft)]">
@@ -63,6 +67,12 @@ export function SideNav({ onNavigate }: { onNavigate?: () => void }) {
             </li>
           ))}
         </ul>
+      </div>
+      <div className="rounded-lg border border-border bg-card p-3 text-xs text-muted-foreground shadow-[var(--shadow-soft)]">
+        <p>Emergência com animais: ligue 190.</p>
+        <Link to="/auth" onClick={onNavigate} className="mt-2 inline-block underline hover:text-foreground">
+          Área da moderação
+        </Link>
       </div>
     </nav>
   );
