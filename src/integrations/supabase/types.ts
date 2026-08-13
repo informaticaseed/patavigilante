@@ -71,6 +71,8 @@ export type Database = {
           city: string | null
           created_at: string
           description: string
+          forwarded_at: string | null
+          forwarded_note: string | null
           id: string
           status: Database["public"]["Enums"]["case_status"]
           uf: string
@@ -80,6 +82,8 @@ export type Database = {
           city?: string | null
           created_at?: string
           description: string
+          forwarded_at?: string | null
+          forwarded_note?: string | null
           id?: string
           status?: Database["public"]["Enums"]["case_status"]
           uf: string
@@ -89,6 +93,8 @@ export type Database = {
           city?: string | null
           created_at?: string
           description?: string
+          forwarded_at?: string | null
+          forwarded_note?: string | null
           id?: string
           status?: Database["public"]["Enums"]["case_status"]
           uf?: string
