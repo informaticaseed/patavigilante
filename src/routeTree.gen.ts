@@ -10,12 +10,21 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DestaquesRouteImport } from './routes/destaques'
 import { Route as CasosIndexRouteImport } from './routes/casos.index'
 import { Route as CasosSlugRouteImport } from './routes/casos.$slug'
+import { Route as RegioesIndexRouteImport } from './routes/regioes.index'
+import { Route as RegioesUfRouteImport } from './routes/regioes.$uf'
+import { Route as TiposTipoRouteImport } from './routes/tipos.$tipo'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DestaquesRoute = DestaquesRouteImport.update({
+  id: '/destaques',
+  path: '/destaques',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CasosIndexRoute = CasosIndexRouteImport.update({
@@ -28,35 +37,88 @@ const CasosSlugRoute = CasosSlugRouteImport.update({
   path: '/casos/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RegioesIndexRoute = RegioesIndexRouteImport.update({
+  id: '/regioes/',
+  path: '/regioes/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RegioesUfRoute = RegioesUfRouteImport.update({
+  id: '/regioes/$uf',
+  path: '/regioes/$uf',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TiposTipoRoute = TiposTipoRouteImport.update({
+  id: '/tipos/$tipo',
+  path: '/tipos/$tipo',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/destaques': typeof DestaquesRoute
   '/casos/$slug': typeof CasosSlugRoute
+  '/regioes/$uf': typeof RegioesUfRoute
+  '/tipos/$tipo': typeof TiposTipoRoute
   '/casos/': typeof CasosIndexRoute
+  '/regioes/': typeof RegioesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/destaques': typeof DestaquesRoute
   '/casos/$slug': typeof CasosSlugRoute
+  '/regioes/$uf': typeof RegioesUfRoute
+  '/tipos/$tipo': typeof TiposTipoRoute
   '/casos': typeof CasosIndexRoute
+  '/regioes': typeof RegioesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/destaques': typeof DestaquesRoute
   '/casos/$slug': typeof CasosSlugRoute
+  '/regioes/$uf': typeof RegioesUfRoute
+  '/tipos/$tipo': typeof TiposTipoRoute
   '/casos/': typeof CasosIndexRoute
+  '/regioes/': typeof RegioesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/casos/$slug' | '/casos/'
+  fullPaths:
+    | '/'
+    | '/destaques'
+    | '/casos/$slug'
+    | '/regioes/$uf'
+    | '/tipos/$tipo'
+    | '/casos/'
+    | '/regioes/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/casos/$slug' | '/casos'
-  id: '__root__' | '/' | '/casos/$slug' | '/casos/'
+  to:
+    | '/'
+    | '/destaques'
+    | '/casos/$slug'
+    | '/regioes/$uf'
+    | '/tipos/$tipo'
+    | '/casos'
+    | '/regioes'
+  id:
+    | '__root__'
+    | '/'
+    | '/destaques'
+    | '/casos/$slug'
+    | '/regioes/$uf'
+    | '/tipos/$tipo'
+    | '/casos/'
+    | '/regioes/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DestaquesRoute: typeof DestaquesRoute
   CasosSlugRoute: typeof CasosSlugRoute
+  RegioesUfRoute: typeof RegioesUfRoute
+  TiposTipoRoute: typeof TiposTipoRoute
   CasosIndexRoute: typeof CasosIndexRoute
+  RegioesIndexRoute: typeof RegioesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -66,6 +128,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/destaques': {
+      id: '/destaques'
+      path: '/destaques'
+      fullPath: '/destaques'
+      preLoaderRoute: typeof DestaquesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/casos/': {
@@ -82,13 +151,38 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CasosSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/regioes/': {
+      id: '/regioes/'
+      path: '/regioes'
+      fullPath: '/regioes/'
+      preLoaderRoute: typeof RegioesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/regioes/$uf': {
+      id: '/regioes/$uf'
+      path: '/regioes/$uf'
+      fullPath: '/regioes/$uf'
+      preLoaderRoute: typeof RegioesUfRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tipos/$tipo': {
+      id: '/tipos/$tipo'
+      path: '/tipos/$tipo'
+      fullPath: '/tipos/$tipo'
+      preLoaderRoute: typeof TiposTipoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DestaquesRoute: DestaquesRoute,
   CasosSlugRoute: CasosSlugRoute,
+  RegioesUfRoute: RegioesUfRoute,
+  TiposTipoRoute: TiposTipoRoute,
   CasosIndexRoute: CasosIndexRoute,
+  RegioesIndexRoute: RegioesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
