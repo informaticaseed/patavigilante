@@ -17,11 +17,12 @@ export type Database = {
       cases: {
         Row: {
           body: string
-          case_type: Database["public"]["Enums"]["case_type"]
+          case_type: Database["public"]["Enums"]["case_type"] | null
           city: string | null
           created_at: string
           featured: boolean
           id: string
+          image_path: string | null
           published_at: string | null
           slug: string | null
           source_url: string | null
@@ -33,11 +34,12 @@ export type Database = {
         }
         Insert: {
           body: string
-          case_type: Database["public"]["Enums"]["case_type"]
+          case_type?: Database["public"]["Enums"]["case_type"] | null
           city?: string | null
           created_at?: string
           featured?: boolean
           id?: string
+          image_path?: string | null
           published_at?: string | null
           slug?: string | null
           source_url?: string | null
@@ -49,11 +51,12 @@ export type Database = {
         }
         Update: {
           body?: string
-          case_type?: Database["public"]["Enums"]["case_type"]
+          case_type?: Database["public"]["Enums"]["case_type"] | null
           city?: string | null
           created_at?: string
           featured?: boolean
           id?: string
+          image_path?: string | null
           published_at?: string | null
           slug?: string | null
           source_url?: string | null
