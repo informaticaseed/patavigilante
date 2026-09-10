@@ -26,8 +26,13 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
-  const destaques = useQuery(casesQuery({ featured: true, limit: 3 }));
+  const destaquesQuery = useQuery(casesQuery({ featured: true, limit: 3 }));
   const recentes = useQuery(casesQuery({ limit: 6 }));
+  const destaquesItens =
+    destaquesQuery.data && destaquesQuery.data.length > 0
+      ? destaquesQuery.data
+      : (recentes.data ?? []).slice(0, 3);
+  const destaques = { isLoading: destaquesQuery.isLoading || recentes.isLoading, data: destaquesItens };
 
   return (
     <SiteLayout>
