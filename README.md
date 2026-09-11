@@ -1,14 +1,18 @@
-# Welcome to your Lovable project
+# Pata Vigilante
+
+inicialmente, eu gostaria de fazer um site informativo, que funcionasse como um blog, sobre tráfico e maus tratos de animais. o site deverá ter uma aba lateral direita com as seguintes opções: denúncia anônima, post sobre um novo caso (também anônimo, pedindo informação apenas sobre a região do caso ocorrido), casos em destaque, casos por região e tipos de caso: caça, criação abusiva e intensiva, comercialização ilegal, crime ocorrido por distinção de raças, sistema intensivo na agropecuária, animais utilizados para esporte
 
 This project was built with [Lovable](https://lovable.dev).
 
+**Live app**: https://patavigilante.lovable.app
+
 ## Build with Lovable
 
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
+Continue developing this project in the [Lovable editor](https://lovable.dev/projects/b7cbd518-876a-4484-b2ea-5b7763a042ec).
 
 - **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
+- **Stay in sync**: every change made in Lovable is committed straight to this repository.
+- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
 
 ## Development
 
@@ -20,10 +24,3 @@ cd <repository-name>
 npm i
 npm run dev
 ```
-
-## Built with
-
-- TanStack Start
-- TypeScript
-- React
-- Tailwind CSS
