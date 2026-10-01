@@ -1,5 +1,5 @@
 # Pata Vigilante
-
+ 
 inicialmente, eu gostaria de fazer um site informativo, que funcionasse como um blog, sobre tráfico e maus tratos de animais. o site deverá ter uma aba lateral direita com as seguintes opções: denúncia anônima, post sobre um novo caso (também anônimo, pedindo informação apenas sobre a região do caso ocorrido), casos em destaque, casos por região e tipos de caso: caça, criação abusiva e intensiva, comercialização ilegal, crime ocorrido por distinção de raças, sistema intensivo na agropecuária, animais utilizados para esporte
 
 This project was built with [Lovable](https://lovable.dev).
